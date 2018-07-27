@@ -1,6 +1,7 @@
 .row{
-    margin-top:3px;
-    margin-bottom:3px;
+    margin-top:0px;
+    margin-bottom:10px;
+    padding-top:10px
 }
 
 .background {
@@ -13,4 +14,25 @@
 .screen {
 	background-color: rgba(0,0,0,0.6);
 	height: 813px;
+}
+
+.navbar {
+	background-color: #DFF2FC;
+}
+
+.navbar-brand {
+	color: #0000cc;
+}
+
+.nav-link {
+	color: #000099;
+}
+
+.list-group {
+	margin-bottom: 10px;
+}
+
+.list-group-item {
+	background-color: rgba(138,226,252,0.8);
+	margin: 4px;
 }
