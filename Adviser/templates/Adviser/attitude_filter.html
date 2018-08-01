@@ -56,14 +56,38 @@
                     </div>
                     <div class="row">
                         <div class="col-3">
-                            <p>採用日</p>
+                            <p>心がけるべき状況</p>
                         </div>
                         <div class="col-9">
-                            <p>{{attitude.adopted_date|date:"Y/m/d G:i:s"}}</p>
+                            <p>{{ attitude.situation }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div id="rating-form" class="col-5">
+                            <form id="rating" method="POST" action="#">
+                                {% csrf_token %}
+                                <input type="hidden" name="attitude.pk" value="{{ attitude.pk }}">
+                                <div class="evaluation">
+                                    <input id="star1" type="radio" name="star" value="5" />
+                                    <label for="star1"><span class="text">完璧</span>★</label>
+                                    <input id="star2" type="radio" name="star" value="4" />
+                                    <label for="star2"><span class="text"></span>★</label>
+                                    <input id="star3" type="radio" name="star" value="3" />
+                                    <label for="star3"><span class="text">普通</span>★</label>
+                                    <input id="star4" type="radio" name="star" value="2" />
+                                    <label for="star4"><span class="text"></span>★</label>
+                                    <input id="star5" type="radio" name="star" value="1" />
+                                    <label for="star5"><span class="text">最悪</span>★</label>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="form-rated-message" class="col-5">
+
+                        </div>
+                        <div class="col-3">
+                            <button id="rate" type="submit" class="btn btn-outline-secondary" form="rating">評価</button>
+                        </div>
+                        <div class="col-4">
                             <div class="float-right">
                                 <a class="btn btn-outline-secondary " href="{% url 'detail' attitude.pk %}">詳細</a>
                                 <a class="btn btn-outline-secondary " href="{% url 'update' attitude.pk %}">編集</a>

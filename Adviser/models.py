@@ -53,8 +53,18 @@ class Attitude(models.Model):
         default=timezone.now,
     )
 
+    timing = models.IntegerField(
+        verbose_name='意識すべきだったタイミング数',
+        default=0,
+    )
+
     frequency = models.FloatField(
-        verbose_name='意識すべき出来事が起こる頻度',
+        verbose_name='要意識頻度',
+        default=0,
+    )
+
+    total_succeeded_point =models.IntegerField(
+        verbose_name='累積成功ポイント',
         default=0,
     )
 

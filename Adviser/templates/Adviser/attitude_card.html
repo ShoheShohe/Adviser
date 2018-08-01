@@ -64,7 +64,15 @@
 </div>
 <div class="row">
     <div class="col-3">
-        <p>意識すべき出来事が起こる頻度</p>
+        <p>意識すべき出来事が起きた累計数</p>
+    </div>
+    <div class="col-9">
+        <p>{{ attitude.timing }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <p>要意識頻度</p>
     </div>
     <div class="col-9">
         <p>{{ attitude.frequency }}</p>
@@ -72,7 +80,15 @@
 </div>
 <div class="row">
     <div class="col-3">
-        <p>実践頻度</p>
+        <p>累積成功ポイント</p>
+    </div>
+    <div class="col-9">
+        <p>{{ attitude.total_succeeded_point }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <p>成功率</p>
     </div>
     <div class="col-9">
         <p>{{ attitude.practiced_rate }}</p>

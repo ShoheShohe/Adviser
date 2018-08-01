@@ -8,3 +8,8 @@ $('.save').on('click', function (e) {
     $('.save').addClass('disabled');
     $('#myform').submit();
 })
+
+// listviewのcard上でレーティングした時に、ページをリロードさせない。これ使ったらsubmitできなくなってる。
+$('#rating').on('submit', function(e) {
+    //e.preventDefault();
+})
