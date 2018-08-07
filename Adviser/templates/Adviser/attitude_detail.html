@@ -1,13 +1,17 @@
 {% extends "./_base.html" %}
 {% block content %}
 <div class="container">
-    <h2 class="text-center">Attitude Card</h2>
     <div class="row">
         <div class="col-12">
             <a class="btn btn-outline-secondary float-right" href="{% url 'index' %}">戻る</a>
         </div>
     </div>
+</div>
+<div id="attitude-card" class="container blue-card">
+    <h2 class="text-center">Attitude Card</h2>
     {% include "./attitude_card.html" %}
+</div>
+<div class="container">
     <div class="row">
         <div class="col-12">
             <a class="btn btn-outline-secondary float-right" href="{% url 'index' %}">戻る</a>

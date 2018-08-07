@@ -1,9 +1,6 @@
 {% extends "./_base.html" %}
 {% block content %}
 <div class="container">
-    <h2 class="text-center">Attitude Card 破棄</h2>
-    <p>このカードを破棄します。よろしいですか？</p>
-
     <form action="" method="post">
         {% csrf_token %}
         <div class="row">
@@ -14,7 +11,13 @@
                 </div>
             </div>
         </div>
-        {% include "./attitude_card.html" %}
+        <div class="row">
+            <div class="col-12 deleting-card blue-card">
+                <h2 class="text-center">Attitude Card 破棄</h2>
+                <p>このカードを破棄します。よろしいですか？</p>
+                {% include "./attitude_card.html" %}
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="float-right">

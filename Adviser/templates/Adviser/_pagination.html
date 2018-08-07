@@ -3,11 +3,11 @@
     <!--まず、前のページに移動するボタンを作る-->
     {% if page_obj.has_previous %}  <!--前のボタンが存在するとき、ボタンをアクティブにする-->
         <li class="page-item">
-            <a class="page-link" href="?{% url_replace request 'page' page_obj.previous_page_number %}">&laquo;</a>
+            <a class="page-link blue-card" href="?{% url_replace request 'page' page_obj.previous_page_number %}">&laquo;</a>
         </li>
     {% else %}  <!--前のページが存在しないなら、押せないボタンを作る-->
         <li class="disabled page-item">
-            <span class="page-link">&laquo;</span>
+            <span class="page-link blue-card over-disabled-blue">&laquo;</span>
         </li>
     {% endif %}
 
@@ -20,24 +20,24 @@
                     </span>
                 </li>
             {% else %}  <!--現在表示中のページ以外のページ番号を作るとき-->
-                <li class="page-item">
-                    <a class="page-link" href="?{% url_replace request 'page' page %}">{{ page }}</a>
+                <li class="page-item blue-card">
+                    <a class="page-link blue-card" href="?{% url_replace request 'page' page %}">{{ page }}</a>
                 </li>
             {% endifequal %}
         {% else %}  <!--ここが意味不明。pageがないならforが終わるはず。pageが存在してもfalseになってるならありえる-->
             <li class="page-item">
-                    <a class="page-link">…</a>
+                    <a class="page-link blue-card">…</a>
             </li>
         {% endif %}
     {% endfor %}
 
     {% if page_obj.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?{% url_replace request 'page' page_obj.next_page_number %}">&raquo;</a>
+            <a class="page-link blue-card" href="?{% url_replace request 'page' page_obj.next_page_number %}">&raquo;</a>
         </li>
     {% else %}
         <li class="disabled page-item">
-            <span class="page-link">&raquo;</span>
+            <span class="page-link blue-card over-disabled-blue">&raquo;</span>
         </li>
     {% endif %}
 </ul>

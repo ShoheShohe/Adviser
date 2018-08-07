@@ -1,1 +1,1 @@
-alert('message.jsは呼び出された')
+window.confirm('message.jsは呼び出された');

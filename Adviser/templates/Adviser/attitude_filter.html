@@ -14,7 +14,7 @@
                 </div>
                 <form id="filter" method="get">
                     <div class="modal-body">
-                        <!--{{filter.form|crispy}}-->
+                        {{filter.form|crispy}}
                     </div>
                 </form>
                 <div class="modal-footer">
@@ -29,8 +29,8 @@
         <div class="col-12">
             <a class="btn btn-secondary filtered" style="visibility:hidden" href="/?page=1">検索を解除</a>
             <div class="float-right">
-                <a class="btn btn-outline-secondary" href="{% url 'create' %}">新規</a>
-                <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
+                <a class="btn btn-outline-secondary blue-card" href="{% url 'create' %}">新規</a>
+                <a class="btn btn-outline-secondary blue-card" data-toggle="modal" data-target="#myModal" href="#">検索</a>
             </div>
         </div>
     </div>
@@ -40,12 +40,21 @@
             {% include "./_pagination.html" %}
         </div>
     </div>
+    <div id="message" class="row blue-card">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
     <!--アイテムリストを作っている-->
     <div class="row">
         <div class="col-12">
             <ul class="list-group">
                 {% for attitude in attitude_list %}
-                <li class="list-group-item">
+                <li class="list-group-item blue-card">
                     <div class="row">
                         <div class="col-3">
                             <p>心がけ</p>
@@ -64,20 +73,20 @@
                     </div>
                     <div class="row">
                         <div id="rating-form" class="col-5">
-                            <form id="rating" method="POST" action="#">
+                            <form id="rating-{{ attitude.pk }}" method="POST" action="#">
                                 {% csrf_token %}
                                 <input type="hidden" name="attitude.pk" value="{{ attitude.pk }}">
                                 <div class="evaluation">
-                                    <input id="star1" type="radio" name="star" value="5" />
-                                    <label for="star1"><span class="text">完璧</span>★</label>
-                                    <input id="star2" type="radio" name="star" value="4" />
-                                    <label for="star2"><span class="text"></span>★</label>
-                                    <input id="star3" type="radio" name="star" value="3" />
-                                    <label for="star3"><span class="text">普通</span>★</label>
-                                    <input id="star4" type="radio" name="star" value="2" />
-                                    <label for="star4"><span class="text"></span>★</label>
-                                    <input id="star5" type="radio" name="star" value="1" />
-                                    <label for="star5"><span class="text">最悪</span>★</label>
+                                    <input id="star1-{{ attitude.pk }}" type="radio" name="star" value="5" />
+                                    <label for="star1-{{ attitude.pk }}"><span class="text">完璧</span>★</label>
+                                    <input id="star2-{{ attitude.pk }}" type="radio" name="star" value="4" />
+                                    <label for="star2-{{ attitude.pk }}"><span class="text"></span>★</label>
+                                    <input id="star3-{{ attitude.pk }}" type="radio" name="star" value="3" />
+                                    <label for="star3-{{ attitude.pk }}"><span class="text">普通</span>★</label>
+                                    <input id="star4-{{ attitude.pk }}" type="radio" name="star" value="2" />
+                                    <label for="star4-{{ attitude.pk }}"><span class="text"></span>★</label>
+                                    <input id="star5-{{ attitude.pk }}" type="radio" name="star" value="1" />
+                                    <label for="star5-{{ attitude.pk }}"><span class="text">最悪</span>★</label>
                                 </div>
                             </form>
                         </div>
@@ -85,7 +94,7 @@
 
                         </div>
                         <div class="col-3">
-                            <button id="rate" type="submit" class="btn btn-outline-secondary" form="rating">評価</button>
+                            <button id="rate" type="submit" class="btn btn-outline-secondary" form="rating-{{ attitude.pk }}">評価</button>
                         </div>
                         <div class="col-4">
                             <div class="float-right">
@@ -97,7 +106,7 @@
                     </div>
                 </li>
                 {% empty %}
-                <li class="list-group-attitude">
+                <li class="list-group-item">
                     対象のデータがありません
                 </li>
                 {% endfor %}
@@ -108,8 +117,8 @@
     <div class="row" >
         <div class="col-12">
             <div class="float-right">
-                <a class="btn btn-outline-secondary" href="{% url 'create' %}">新規</a>
-                <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
+                <a class="btn btn-outline-secondary blue-card" href="{% url 'create' %}">新規</a>
+                <a class="btn btn-outline-secondary blue-card" data-toggle="modal" data-target="#myModal" href="#">検索</a>
             </div>
         </div>
     </div>

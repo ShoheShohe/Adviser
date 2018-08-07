@@ -5,7 +5,11 @@
     padding-top:10px
 }
 
-/* -base.html */
+.blue-card{
+    background-color: rgba(138,226,252,0.8);
+}
+
+/* _base.html */
 .background {
 	background-image: url(../images/IIIscreen.png);
 	background-size: cover;
@@ -30,9 +34,21 @@
 	color: #000099;
 }
 
+.dark-blue-card {
+    background-color: rgb(115,198,222);
+}
+
+.over-disabled-blue {
+    background-color: rgba(138,226,252,0.8) ! important;
+}
+
 /* attitude_filter.html */
 #form-rated-message {
     display: none;
+}
+
+#message {
+	padding-top: 0px;
 }
 
 .list-group {
@@ -40,7 +56,6 @@
 }
 
 .list-group-item {
-	background-color: rgba(138,226,252,0.8);
 	margin: 4px;
 }
 
@@ -72,4 +87,16 @@
 .evaluation label:hover ~ label,
 .evaluation input[type='radio']:checked ~ label{
   color: #ffcc00;
+}
+
+/* attitude_detail.html and attitude_card.html */
+#attitude-card {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* attitude_confirm_delete.html */
+.deleting-card{
+    padding-top: 10px;
+    padding-left: 10px;
 }

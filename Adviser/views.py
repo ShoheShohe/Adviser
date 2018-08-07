@@ -3,6 +3,7 @@ from datetime import timedelta
 import subprocess
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import F
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -13,6 +14,7 @@ from django_filters.views import FilterView
 from pure_pagination.mixins import PaginationMixin
 
 from .models import Attitude
+from .filters import AttitudeFilter
 from .forms import AttitudeForm
 
 # Create your views here.
@@ -20,15 +22,27 @@ from .forms import AttitudeForm
 
 class AttitudeFilterView(LoginRequiredMixin, PaginationMixin, FilterView):
     model = Attitude
+    filterset_class = AttitudeFilter
     context_object_name = "attitude_list"
 
     def get_queryset(self):
-        return Attitude.objects.filter(maker=self.request.user).order_by('practiced_rate')
+        user_attitudes = Attitude.objects.filter(maker=self.request.user)
+        return user_attitudes.order_by((F('frequency') * (1 - F('practiced_rate'))).desc())
     # ひとまずデフォルトは成功率の低いものから順に表示するようにしているが、のちに変更すべき。
 
     # pure_pagination用設定
     paginate_by = 3
     object = Attitude
+
+    def get(self, request, **kwargs):
+        if request.GET:
+            request.session['query'] = request.GET
+        else:
+            request.GET = request.GET.copy()
+            if 'query' in request.session.keys():
+                for key in request.session['query'].keys():
+                    request.GET[key] = request.session['query'][key]
+        return super().get(request, **kwargs)
 
     def post(self, request):
         if request.POST:
@@ -39,7 +53,10 @@ class AttitudeFilterView(LoginRequiredMixin, PaginationMixin, FilterView):
             rated_attitude.practiced_rate = rated_attitude.total_succeeded_point / (rated_attitude.timing * 5)
             rated_attitude.save()
             # 更新できた旨のお知らせと、星をまた灰色に戻す
-            subprocess.getoutput('../static/Adviser/js/message.js')
+            messages.success(request,
+                             '''心がけ:「{0}」の、
+                             認識すべきだった回数を+1, 
+                             成功ポイントを+{1}しました。'''.format(rated_attitude.declaration, request.POST['star']))
         else:
             pass
         return HttpResponseRedirect(reverse_lazy('index'))
