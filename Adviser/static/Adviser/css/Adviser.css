@@ -6,7 +6,7 @@
 }
 
 .blue-card{
-    background-color: rgba(138,226,252,0.8);
+    background-color: rgba(138,226,252,0.98);
 }
 
 /* _base.html */
@@ -18,7 +18,7 @@
 }
 
 .screen {
-	background-color: rgba(0,0,0,0.6);
+	background-color: rgba(0,0,0,0.2);
 	height: 813px;
 }
 
@@ -35,11 +35,11 @@
 }
 
 .dark-blue-card {
-    background-color: rgb(115,198,222);
+    background-color: rgb(138,226,252);
 }
 
 .over-disabled-blue {
-    background-color: rgba(138,226,252,0.8) ! important;
+    background-color: rgba(138,226,252,0.9) ! important;
 }
 
 /* attitude_filter.html */
